@@ -10,14 +10,8 @@ class Mysplashpaint extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CustomPaint(
-          painter: Mypaint1(),
-          child: Container(),
-        ),
-        CustomPaint(
-          painter: Mypaint(),
-          child: Container(),
-        ),
+        CustomPaint(painter: Mypaint1(), child: Container()),
+        CustomPaint(painter: Mypaint(), child: Container()),
       ],
     );
   }
@@ -59,6 +53,7 @@ class Mypaint extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    // ignore: todo
     // TODO: implement shouldRepaint
     return true;
   }
@@ -106,6 +101,7 @@ class Mypaint1 extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    // ignore: todo
     // TODO: implement shouldRepaint
     return true;
   }

@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:samayam/const/const.dart';
+import 'package:samayam/const/strings.dart';
 import 'package:samayam/const/textstyle.dart';
-import 'package:samayam/views/navigation/navigationpage.dart';
 import 'package:samayam/views/splash_screen/widget/clock_animation.dart';
 import 'package:samayam/views/splash_screen/widget/splash_paint.dart';
+import 'package:samayam/views/user_login_page/siigninpage.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
-  Future<void> gotohome() async {
+
+  Future gotohome() async {
     await Future.delayed(const Duration(seconds: 2));
 
-    Get.to(const Navigationpage());
+    Get.offAll(() => Signin(),
+        transition: Transition.circularReveal,
+        duration: const Duration(seconds: 2));
   }
 
   @override
@@ -32,9 +36,9 @@ class SplashScreen extends StatelessWidget {
                   Clockanimation(),
                 ],
               ),
-              khignt30,
+              kheight30,
               Text(
-                'Samayam',
+                appname,
                 style: kmaintitle,
               ),
             ],

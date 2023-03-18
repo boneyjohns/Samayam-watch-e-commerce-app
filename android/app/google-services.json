@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "114500361085",
+    "project_id": "samayam-57ecf",
+    "storage_bucket": "samayam-57ecf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:114500361085:android:3ac49797ec4342e1950a14",
+        "android_client_info": {
+          "package_name": "com.example.samayam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "114500361085-nfvh1gob25pm4cgf4lpdgmhu017cb1t5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRyslrtG9Bf7ItBKLSIcRNJqs7jwqbxWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "114500361085-nfvh1gob25pm4cgf4lpdgmhu017cb1t5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
