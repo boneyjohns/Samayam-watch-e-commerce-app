@@ -23,7 +23,7 @@ class Settings extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          Mysplashpaint(),
+          const Mysplashpaint(),
           Column(
             children: [
               const Settinglisttile(

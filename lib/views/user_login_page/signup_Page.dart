@@ -1,20 +1,13 @@
 // ignore_for_file: file_names
 
-import 'dart:developer' show log;
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/const.dart';
 import 'package:samayam/const/textstyle.dart';
-import 'package:samayam/funstons/signup_funstion.dart';
-import 'package:samayam/services/signup_services.dart';
-import 'package:samayam/views/navigation_screen/widget/myappbar.dart';
-import 'package:samayam/views/user_login_page/siigninpage.dart';
+import 'package:samayam/functions/signup_funstion.dart';
 import 'package:samayam/views/user_login_page/widgets/loginpageanimation.dart';
-
 import 'package:samayam/views/user_login_page/widgets/mytext_field.dart';
 
 class SignUp extends StatelessWidget {

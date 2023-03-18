@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:samayam/const/colours.dart';
-import 'package:samayam/funstons/wishlist_fun.dart';
+import 'package:samayam/functions/wishlist_fun.dart';
 import 'package:samayam/model/product_model.dart';
 
 class Productdetailimg extends StatelessWidget {

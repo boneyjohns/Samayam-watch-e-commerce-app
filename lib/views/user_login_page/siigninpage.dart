@@ -4,8 +4,8 @@ import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/const.dart';
 import 'package:samayam/const/strings.dart';
 import 'package:samayam/const/textstyle.dart';
-import 'package:samayam/funstons/emaillogin.dart';
-import 'package:samayam/funstons/googlesigninfun.dart';
+import 'package:samayam/functions/emaillogin.dart';
+import 'package:samayam/functions/googlesigninfun.dart';
 import 'package:samayam/views/user_login_page/signup_Page.dart';
 import 'package:samayam/views/user_login_page/widgets/loginpageanimation.dart';
 import 'package:samayam/views/user_login_page/widgets/mytext_field.dart';
@@ -33,7 +33,6 @@ class Signin extends StatelessWidget {
             const Loginpageanimation(),
             kheight20,
             Mytextformfield(
-              validator: (Value) {},
               hide: false,
               keyboardtype: TextInputType.emailAddress,
               text: 'Email',

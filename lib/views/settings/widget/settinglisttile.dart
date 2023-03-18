@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/textstyle.dart';
 
 class Settinglisttile extends StatelessWidget {
