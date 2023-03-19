@@ -45,6 +45,7 @@ dependencies:
   firebase_storage: ^11.0.14
   firebase_database: ^10.0.14
   google_sign_in: ^6.0.2
+  searchbar_animation: ^0.0.4
 
 dev_dependencies:
   flutter_test:

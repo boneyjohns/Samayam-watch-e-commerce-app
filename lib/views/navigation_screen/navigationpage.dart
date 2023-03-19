@@ -14,7 +14,7 @@ class Navigationpage extends StatelessWidget {
   const Navigationpage({super.key});
   final int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = <Widget>[
-    const Homescreen(),
+    Homescreen(),
     const FavoritesScreen(),
     const CartScreen(),
     const NotificationScreen(),

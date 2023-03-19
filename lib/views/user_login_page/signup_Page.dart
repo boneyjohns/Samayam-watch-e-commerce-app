@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/const.dart';
 import 'package:samayam/const/textstyle.dart';
+import 'package:samayam/controller/signincontroller.dart';
 import 'package:samayam/functions/signup_funstion.dart';
 import 'package:samayam/views/user_login_page/widgets/loginpageanimation.dart';
 import 'package:samayam/views/user_login_page/widgets/mytext_field.dart';
@@ -14,12 +15,8 @@ class SignUp extends StatelessWidget {
   SignUp({
     super.key,
   });
-  final TextEditingController usernamecontroller = TextEditingController();
-  final TextEditingController phonecontroller = TextEditingController();
-  final TextEditingController emailcontroller = TextEditingController();
-  final TextEditingController passwordcontroller = TextEditingController();
   final User? currentuser = FirebaseAuth.instance.currentUser;
-
+  Signincontroller signincontroller = Get.put(Signincontroller());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,64 +28,93 @@ class SignUp extends StatelessWidget {
         backgroundColor: kappbarcolor,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            kheight20,
-            const Loginpageanimation(),
-            kheight20,
-            Mytextformfield(
-              hide: false,
-              keyboardtype: TextInputType.name,
-              text: 'Username',
-              preicon: Icons.person,
-              mycontroller: usernamecontroller,
-            ),
-            kheight20,
-            Mytextformfield(
-                hide: false,
-                keyboardtype: TextInputType.phone,
-                text: 'Phone',
-                preicon: Icons.phone,
-                mycontroller: phonecontroller),
-            kheight20,
-            Mytextformfield(
-                hide: false,
-                keyboardtype: TextInputType.emailAddress,
-                text: 'Email',
-                preicon: Icons.mail,
-                mycontroller: emailcontroller),
-            kheight20,
-            Mytextformfield(
-                hide: true,
-                keyboardtype: TextInputType.visiblePassword,
-                text: 'Password',
-                preicon: Icons.lock,
-                mycontroller: passwordcontroller),
-            kheight20,
-            ElevatedButton(
-                onPressed: () {
-                  signupfun(
-                      phone: phonecontroller.text,
-                      useremail: emailcontroller.text,
-                      username: usernamecontroller.text,
-                      userpassword: passwordcontroller.text);
+        child: Form(
+          key: signincontroller.signupformkey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: Column(
+            children: [
+              kheight20,
+              const Loginpageanimation(),
+              kheight20,
+              Mytextformfield(
+                onSave: (value) {
+                  signincontroller.name = value!;
                 },
-                child: Text(
-                  'Sign Up',
-                  style: kcartliststyle,
-                )),
-            GestureDetector(
-              onTap: Get.back,
-              child: Card(
-                child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Text(
-                      "Already have an account ",
-                      style: klogintext,
-                    )),
+                validator: (value) {
+                  return signincontroller.validateusername(value!);
+                },
+                hide: false,
+                keyboardtype: TextInputType.name,
+                text: 'Username',
+                preicon: Icons.person,
+                mycontroller: signincontroller.namecontroller,
               ),
-            ),
-          ],
+              kheight20,
+              Mytextformfield(
+                  onSave: (value) {
+                    signincontroller.phone = value!;
+                  },
+                  validator: (value) {
+                    return signincontroller.validatephone(value!);
+                  },
+                  hide: false,
+                  keyboardtype: TextInputType.phone,
+                  text: 'Phone',
+                  preicon: Icons.phone,
+                  mycontroller: signincontroller.phonecontroller),
+              kheight20,
+              Mytextformfield(
+                  onSave: (value) {
+                    signincontroller.email = value!;
+                  },
+                  validator: (value) {
+                    return signincontroller.validateemail(value!);
+                  },
+                  hide: false,
+                  keyboardtype: TextInputType.emailAddress,
+                  text: 'Email',
+                  preicon: Icons.mail,
+                  mycontroller: signincontroller.emailcontroller),
+              kheight20,
+              Mytextformfield(
+                  onSave: (value) {
+                    signincontroller.password = value!;
+                  },
+                  validator: (value) {
+                    return signincontroller.validatepassword(value!);
+                  },
+                  hide: true,
+                  keyboardtype: TextInputType.visiblePassword,
+                  text: 'Password',
+                  preicon: Icons.lock,
+                  mycontroller: signincontroller.passwordcontroller),
+              kheight20,
+              ElevatedButton(
+                  onPressed: () async {
+                    signincontroller.checkSignup();
+                    await signupfun(
+                        phone: signincontroller.phone,
+                        useremail: signincontroller.email,
+                        username: signincontroller.name,
+                        userpassword: signincontroller.password);
+                  },
+                  child: Text(
+                    'Sign Up',
+                    style: kcartliststyle,
+                  )),
+              GestureDetector(
+                onTap: Get.back,
+                child: Card(
+                  child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        "Already have an account ",
+                        style: klogintext,
+                      )),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
