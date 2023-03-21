@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:samayam/const/const.dart';
 import 'package:samayam/const/textstyle.dart';
+import 'package:samayam/functions/addtocart.dart';
 import 'package:samayam/model/product_model.dart';
 import 'package:samayam/views/navigation_screen/widget/myappbar.dart';
 import 'package:samayam/views/productdetails/widget/productdetailcheckoutbox.dart';
@@ -10,29 +11,11 @@ import 'package:samayam/views/settings/settings.dart';
 import 'package:samayam/views/splash_screen/widget/splash_paint.dart';
 
 class Productdeatils extends StatelessWidget {
-  const Productdeatils(
-      {super.key,
-      required this.name,
-      required this.price,
-      required this.quantity,
-      required this.strapcolor,
-      required this.straptype,
-      required this.displaytype,
-      required this.dualtime,
-      required this.waranty,
-      required this.modelname,
-      required this.product,
-      required this.images});
-  final String name;
-  final String price;
-  final String quantity;
-  final String strapcolor;
-  final String straptype;
-  final String displaytype;
-  final List images;
-  final String dualtime;
-  final String waranty;
-  final String modelname;
+  const Productdeatils({
+    super.key,
+    required this.product,
+  });
+
   final ProductModel product;
   @override
   Widget build(BuildContext context) {
@@ -40,7 +23,7 @@ class Productdeatils extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: Myappbar(
-            title: Text(name),
+            title: Text(product.name),
             appbartrailing: IconButton(
               icon: const Icon(Icons.settings),
               onPressed: () {
@@ -57,7 +40,7 @@ class Productdeatils extends StatelessWidget {
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Productdetailimg(
                 product: product,
-                image: images,
+                image: product.imagelist[0],
               ),
               Expanded(
                 child: Padding(
@@ -65,37 +48,41 @@ class Productdeatils extends StatelessWidget {
                   child: ListView(children: [
                     kheight20,
                     Text(
-                      name,
+                      product.name,
                       style: kmaintitle,
                     ),
                     kheight20,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Price   ₹$price'),
+                        Text('Price   ₹${product.price}'),
                         IconButton(
                             onPressed: () {},
-                            icon: const Icon(
-                              Icons.shopping_cart,
-                              size: 25,
-                            ))
+                            icon: IconButton(
+                                onPressed: () {
+                                  addToCart(product: product);
+                                },
+                                icon: const Icon(
+                                  Icons.shopping_cart,
+                                  size: 25,
+                                )))
                       ],
                     ),
-                    Text('Model Name   $modelname'),
+                    Text('Model Name   ${product.modelname}'),
                     kheight10,
-                    Text('Warranty Period   $waranty'),
+                    Text('Warranty Period   ${product.warrantyperiod}'),
                     kheight10,
-                    Text('Quantity   $quantity'),
+                    Text('Quantity   ${product.quantity}'),
                     kheight10,
-                    Text('Displaytype   $displaytype'),
+                    Text('Displaytype   ${product.displaytype}'),
                     kheight10,
-                    Text('Modelname   $modelname'),
+                    Text('Modelname   ${product.modelname}'),
                     kheight10,
-                    Text('Straptype   $straptype'),
+                    Text('Straptype   ${product.straptype}'),
                     kheight10,
-                    Text('Strapcolor   $strapcolor'),
+                    Text('Strapcolor   ${product.strapcolour}'),
                     kheight10,
-                    Text('Dualtime   $dualtime'),
+                    Text('Dualtime   ${product.dualtime}'),
                     kheight30,
                     const Productdetailbox()
                   ]),

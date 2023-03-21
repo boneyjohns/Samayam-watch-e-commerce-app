@@ -10,7 +10,7 @@ class Productdetailimg extends StatelessWidget {
     required this.product,
     required this.image,
   }) : super(key: key);
-  final List image;
+  final String image;
   final ProductModel product;
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class Productdetailimg extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: NetworkImage(image[0].toString()), fit: BoxFit.fill)),
+                  image: NetworkImage(image), fit: BoxFit.fill)),
         ),
         Positioned(
             right: 20,

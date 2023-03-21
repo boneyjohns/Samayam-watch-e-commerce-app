@@ -2,17 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/const.dart';
 import 'package:samayam/const/textstyle.dart';
+import 'package:samayam/functions/addtocart.dart';
+import 'package:samayam/model/product_model.dart';
 
 class Cartlist extends StatelessWidget {
-  const Cartlist(
-      {Key? key,
-      required this.cartimage,
-      required this.productname,
-      required this.price})
-      : super(key: key);
-  final String cartimage;
-  final String productname;
-  final String price;
+  Cartlist({Key? key, required this.product}) : super(key: key);
+
+  ProductModel product;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +29,7 @@ class Cartlist extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                   image: DecorationImage(
-                    image: NetworkImage(cartimage),
+                    image: NetworkImage(product.imagelist[0]),
                     fit: BoxFit.fill,
                   )),
             ),
@@ -41,16 +37,18 @@ class Cartlist extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(productname, style: kcartliststyle),
+              Text(product.name, style: kcartliststyle),
               kheight10,
               Text(
-                'Price  $price',
+                'Price  ${product.price}',
                 style: kcartliststyle,
               ),
             ],
           ),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                removeFromCart(product: product);
+              },
               icon: const Icon(
                 Icons.delete,
                 color: kred,

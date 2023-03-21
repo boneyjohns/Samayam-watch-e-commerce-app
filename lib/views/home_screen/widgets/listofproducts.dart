@@ -41,33 +41,7 @@ class Listofproducts extends StatelessWidget {
 
                     return InkWell(
                       onTap: () => Get.to(
-                          Productdeatils(
-                            images: documentSnapshot[index].imagelist,
-                            displaytype: documentSnapshot[index].displaytype,
-                            dualtime: documentSnapshot[index].dualtime,
-                            modelname: documentSnapshot[index].modelname,
-                            name: documentSnapshot[index].name,
-                            price: documentSnapshot[index].price,
-                            quantity: documentSnapshot[index].quantity,
-                            strapcolor: documentSnapshot[index].strapcolour,
-                            straptype: documentSnapshot[index].straptype,
-                            waranty: documentSnapshot[index].warrantyperiod,
-                            product: ProductModel(
-                                name: documentSnapshot[index].name,
-                                doc: documentSnapshot[index].doc,
-                                price: documentSnapshot[index].price,
-                                quantity: documentSnapshot[index].quantity,
-                                displaytype:
-                                    documentSnapshot[index].displaytype,
-                                modelname: documentSnapshot[index].modelname,
-                                strapcolour:
-                                    documentSnapshot[index].strapcolour,
-                                straptype: documentSnapshot[index].straptype,
-                                warrantyperiod:
-                                    documentSnapshot[index].warrantyperiod,
-                                dualtime: documentSnapshot[index].dualtime,
-                                imagelist: documentSnapshot[index].imagelist),
-                          ),
+                          Productdeatils(product: documentSnapshot[index]),
                           transition: Transition.circularReveal,
                           duration: const Duration(seconds: 2)),
                       child: Container(
@@ -134,40 +108,13 @@ class Listofproducts extends StatelessWidget {
                                                         )
                                                         .isNotEmpty
                                                     ? await removefromwislist(
-                                                        doc: documentSnapshot[index]
+                                                        doc: documentSnapshot[
+                                                                index]
                                                             .name)
                                                     : await addtowhishlist(
-                                                        product: ProductModel(
-                                                            name: documentSnapshot[index]
-                                                                .name,
-                                                            doc: documentSnapshot[index]
-                                                                .doc,
-                                                            price: documentSnapshot[index]
-                                                                .price,
-                                                            quantity:
-                                                                documentSnapshot[index]
-                                                                    .quantity,
-                                                            displaytype:
-                                                                documentSnapshot[index]
-                                                                    .displaytype,
-                                                            modelname:
-                                                                documentSnapshot[index]
-                                                                    .modelname,
-                                                            strapcolour:
-                                                                documentSnapshot[index]
-                                                                    .strapcolour,
-                                                            straptype:
-                                                                documentSnapshot[index]
-                                                                    .straptype,
-                                                            warrantyperiod:
-                                                                documentSnapshot[index]
-                                                                    .warrantyperiod,
-                                                            dualtime:
-                                                                documentSnapshot[index]
-                                                                    .dualtime,
-                                                            imagelist:
-                                                                documentSnapshot[index]
-                                                                    .imagelist));
+                                                        product:
+                                                            documentSnapshot[
+                                                                index]);
                                               },
                                             );
                                           } else {
