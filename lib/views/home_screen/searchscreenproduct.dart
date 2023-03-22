@@ -16,143 +16,112 @@ class SreachScreenProducts extends StatelessWidget {
   Searchcontroller searchcontroller = Get.put(Searchcontroller());
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10),
-      child: StreamBuilder<List<ProductModel>>(
-          stream: FirebaseFirestore.instance
-              .collection('search')
-              .snapshots()
-              .map((snapshot) => snapshot.docs
-                  .map((e) => ProductModel.fromJson(e.data()))
-                  .toList()),
-          builder: (context, snapshot) {
-            return (snapshot.connectionState == ConnectionState.waiting)
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 180,
-                            childAspectRatio: 5 / 7,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10),
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (BuildContext ctx, index) {
-                      List<ProductModel> documentSnapshot = snapshot.data!;
-                      if (searchcontroller.name.isEmpty) {
-                        return InkWell(
-                          onTap: () => Get.to(
-                              () => Productdeatils(
-                                  product: documentSnapshot[index]),
-                              transition: Transition.circularReveal,
-                              duration: const Duration(seconds: 2)),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: kctransperant,
-                            ),
-                            child: Column(
-                              children: [
-                                Stack(
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      // searchcontroller.searchlist.value = searchcontroller.productList;
+      // searchcontroller.getproductlist();
+    });
+    return StreamBuilder<List<ProductModel>>(
+        stream: FirebaseFirestore.instance.collection('search').snapshots().map(
+            (snapshot) => snapshot.docs
+                .map((e) => ProductModel.fromJson(e.data()))
+                .toList()),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return const Center(
+              child: Text("Error Occured"),
+            );
+          } else if (snapshot.data == null) {
+            return const Center(
+              child: Text("Empty"),
+            );
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: GetBuilder<Searchcontroller>(
+                  init: Searchcontroller(),
+                  builder: (searchcontroller) {
+                    return GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                                maxCrossAxisExtent: 180,
+                                childAspectRatio: 5 / 7,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10),
+                        itemCount: searchcontroller.searchlist.length,
+                        itemBuilder: (BuildContext ctx, index) {
+                          if (searchcontroller.name.isEmpty) {
+                            return InkWell(
+                              onTap: () => Get.to(
+                                  () => Productdeatils(
+                                      product:
+                                          searchcontroller.searchlist[index]),
+                                  transition: Transition.circularReveal,
+                                  duration: const Duration(seconds: 2)),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: kctransperant,
+                                ),
+                                child: Column(
                                   children: [
-                                    Container(
-                                      height: 170,
-                                      decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.only(
-                                              topLeft: Radius.circular(30),
-                                              topRight: Radius.circular(30)),
-                                          image: DecorationImage(
-                                            image: NetworkImage(
-                                                documentSnapshot[index]
-                                                    .imagelist[0]),
-                                            fit: BoxFit.cover,
-                                          )),
+                                    Stack(
+                                      children: [
+                                        Container(
+                                          height: 170,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(30),
+                                                      topRight:
+                                                          Radius.circular(30)),
+                                              image: DecorationImage(
+                                                image: NetworkImage(
+                                                    searchcontroller
+                                                        .searchlist[index]
+                                                        .imagelist[0]),
+                                                fit: BoxFit.cover,
+                                              )),
+                                        ),
+                                        Favorateicon(
+                                          documentSnapshot:
+                                              searchcontroller.searchlist,
+                                          index: index,
+                                        )
+                                      ],
                                     ),
-                                    Favorateicon(
-                                      documentSnapshot: documentSnapshot,
-                                      index: index,
+                                    Text(
+                                        searchcontroller.searchlist[index].name,
+                                        style: klistofproductname),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        kwidth20,
+                                        const Text(
+                                          'Price',
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                        Text(
+                                            "₹${searchcontroller.searchlist[index].price}"),
+                                        kwidth20,
+                                      ],
                                     )
                                   ],
                                 ),
-                                Text(documentSnapshot[index].name,
-                                    style: klistofproductname),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    kwidth20,
-                                    const Text(
-                                      'Price',
-                                      style: TextStyle(fontSize: 18),
-                                    ),
-                                    Text("₹${documentSnapshot[index].price}"),
-                                    kwidth20,
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      }
-                      if (documentSnapshot[index]
-                          .name
-                          .startsWith(searchcontroller.name.toLowerCase())) {
-                        return InkWell(
-                          onTap: () => Get.to(
-                              () => Productdeatils(
-                                  product: documentSnapshot[index]),
-                              transition: Transition.circularReveal,
-                              duration: const Duration(seconds: 2)),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: kctransperant,
-                            ),
-                            child: Column(
-                              children: [
-                                Stack(
-                                  children: [
-                                    Container(
-                                      height: 170,
-                                      decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.only(
-                                              topLeft: Radius.circular(30),
-                                              topRight: Radius.circular(30)),
-                                          image: DecorationImage(
-                                            image: NetworkImage(
-                                                documentSnapshot[index]
-                                                    .imagelist[0]),
-                                            fit: BoxFit.cover,
-                                          )),
-                                    ),
-                                    Favorateicon(
-                                        documentSnapshot: documentSnapshot,
-                                        index: index)
-                                  ],
-                                ),
-                                Text(documentSnapshot[index].name,
-                                    style: klistofproductname),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    kwidth20,
-                                    const Text(
-                                      'Price',
-                                      style: TextStyle(fontSize: 18),
-                                    ),
-                                    Text("₹${documentSnapshot[index].price}"),
-                                    kwidth20,
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      }
-                    });
-          }),
-    );
+                              ),
+                            );
+                          } else {
+                            return CircularProgressIndicator();
+                          }
+                        });
+                  }),
+            );
+          }
+        });
   }
 }

@@ -16,7 +16,12 @@ class SignUp extends StatelessWidget {
     super.key,
   });
   final User? currentuser = FirebaseAuth.instance.currentUser;
-  Signincontroller signincontroller = Get.put(Signincontroller());
+  // Signincontroller signincontroller = Get.put(Signincontroller());
+  final emailcontroller = TextEditingController();
+  final passwordcontroller = TextEditingController();
+
+  final phonecontroller = TextEditingController();
+  final namecontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +52,7 @@ class SignUp extends StatelessWidget {
                 keyboardtype: TextInputType.name,
                 text: 'Username',
                 preicon: Icons.person,
-                mycontroller: signincontroller.namecontroller,
+                mycontroller: namecontroller,
               ),
               kheight20,
               Mytextformfield(
@@ -61,7 +66,7 @@ class SignUp extends StatelessWidget {
                   keyboardtype: TextInputType.phone,
                   text: 'Phone',
                   preicon: Icons.phone,
-                  mycontroller: signincontroller.phonecontroller),
+                  mycontroller: phonecontroller),
               kheight20,
               Mytextformfield(
                   onSave: (value) {
@@ -74,7 +79,7 @@ class SignUp extends StatelessWidget {
                   keyboardtype: TextInputType.emailAddress,
                   text: 'Email',
                   preicon: Icons.mail,
-                  mycontroller: signincontroller.emailcontroller),
+                  mycontroller: emailcontroller),
               kheight20,
               Mytextformfield(
                   onSave: (value) {
@@ -87,16 +92,16 @@ class SignUp extends StatelessWidget {
                   keyboardtype: TextInputType.visiblePassword,
                   text: 'Password',
                   preicon: Icons.lock,
-                  mycontroller: signincontroller.passwordcontroller),
+                  mycontroller: passwordcontroller),
               kheight20,
               ElevatedButton(
                   onPressed: () async {
                     signincontroller.checkSignup();
                     await signupfun(
-                        phone: signincontroller.phone,
-                        useremail: signincontroller.email,
-                        username: signincontroller.name,
-                        userpassword: signincontroller.password);
+                        phone: phonecontroller.text.trim(),
+                        useremail: emailcontroller.text,
+                        username: namecontroller.text,
+                        userpassword: passwordcontroller.text);
                   },
                   child: Text(
                     'Sign Up',

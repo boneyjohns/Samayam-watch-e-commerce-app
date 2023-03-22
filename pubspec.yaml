@@ -46,6 +46,7 @@ dependencies:
   firebase_database: ^10.0.14
   google_sign_in: ^6.0.2
   searchbar_animation: ^0.0.4
+  image_picker: ^0.8.7
 
 dev_dependencies:
   flutter_test:

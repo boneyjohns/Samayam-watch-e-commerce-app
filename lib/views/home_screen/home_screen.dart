@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:samayam/const/colours.dart';
@@ -31,20 +33,21 @@ class Homescreen extends StatelessWidget {
       ),
       kheight30,
       Padding(
-          padding: const EdgeInsets.only(left: 30, right: 30),
-          child: SearchBarAnimation(
-            textEditingController: searchcontroller.textcontroller,
-            isOriginalAnimation: false,
-            trailingWidget: const Icon(Icons.search),
-            secondaryButtonWidget: const Icon(Icons.close),
-            buttonWidget: const Icon(Icons.search),
-            buttonColour: kblue,
-            buttonShadowColour: kred,
-            durationInMilliSeconds: 1000,
-            onChanged: (val) {
-              searchcontroller.search(val);
-            },
-          )),
+        padding: const EdgeInsets.only(left: 30, right: 30),
+        child: SearchBarAnimation(
+          textEditingController: searchcontroller.textcontroller,
+          isOriginalAnimation: false,
+          trailingWidget: const Icon(Icons.search),
+          secondaryButtonWidget: const Icon(Icons.close),
+          buttonWidget: const Icon(Icons.search),
+          buttonColour: kblue,
+          buttonShadowColour: kred,
+          durationInMilliSeconds: 1000,
+          onChanged: (val) {
+            searchcontroller.search(val);
+          },
+        ),
+      ),
       kheight20,
       Text(
         'Categories',

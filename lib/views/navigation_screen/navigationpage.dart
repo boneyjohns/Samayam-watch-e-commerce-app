@@ -18,7 +18,7 @@ class Navigationpage extends StatelessWidget {
     const FavoritesScreen(),
     const CartScreen(),
     const NotificationScreen(),
-    const ProfileScreen(),
+    ProfileScreen(),
   ];
 
   @override

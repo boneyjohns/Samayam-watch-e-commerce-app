@@ -2,8 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:samayam/functions/emaillogin.dart';
-import 'package:samayam/functions/signup_funstion.dart';
 
 final signincontroller = Get.put(Signincontroller());
 
