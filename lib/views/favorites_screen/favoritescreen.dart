@@ -14,7 +14,7 @@ class FavoritesScreen extends StatelessWidget {
         Myappbar(
           appbartrailing: IconButton(
               onPressed: () {
-                Get.to(const Settings(),
+                Get.to(const Settingspage(),
                     transition: Transition.circularReveal,
                     duration: const Duration(seconds: 2));
               },

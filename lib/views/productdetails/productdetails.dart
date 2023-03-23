@@ -27,7 +27,7 @@ class Productdeatils extends StatelessWidget {
             appbartrailing: IconButton(
               icon: const Icon(Icons.settings),
               onPressed: () {
-                Get.to(const Settings(),
+                Get.to(const Settingspage(),
                     transition: Transition.circularReveal,
                     duration: const Duration(seconds: 2));
               },

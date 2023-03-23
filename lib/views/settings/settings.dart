@@ -9,8 +9,8 @@ import 'package:samayam/views/settings/widget/settinglisttile.dart';
 import 'package:samayam/views/splash_screen/widget/splash_paint.dart';
 import 'package:samayam/views/user_login_page/siigninpage.dart';
 
-class Settings extends StatelessWidget {
-  const Settings({super.key});
+class Settingspage extends StatelessWidget {
+  const Settingspage({super.key});
 
   @override
   Widget build(BuildContext context) {

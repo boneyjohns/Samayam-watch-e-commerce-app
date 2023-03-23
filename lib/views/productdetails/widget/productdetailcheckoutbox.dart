@@ -22,7 +22,7 @@ class Productdetailbox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                'amount',
+                'Amount',
                 style: kcartliststyle,
               ),
               Text(
@@ -35,7 +35,7 @@ class Productdetailbox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                'shiping',
+                'Shiping',
                 style: kcartliststyle,
               ),
               Text(
