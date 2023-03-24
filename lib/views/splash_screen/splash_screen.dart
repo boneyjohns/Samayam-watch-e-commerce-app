@@ -5,7 +5,7 @@ import 'package:samayam/const/strings.dart';
 import 'package:samayam/const/textstyle.dart';
 import 'package:samayam/views/splash_screen/widget/clock_animation.dart';
 import 'package:samayam/views/splash_screen/widget/splash_paint.dart';
-import 'package:samayam/views/user_login_page/siigninpage.dart';
+import 'package:samayam/views/user_login_page/signin.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

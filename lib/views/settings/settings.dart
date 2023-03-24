@@ -7,7 +7,7 @@ import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/const.dart';
 import 'package:samayam/views/settings/widget/settinglisttile.dart';
 import 'package:samayam/views/splash_screen/widget/splash_paint.dart';
-import 'package:samayam/views/user_login_page/siigninpage.dart';
+import 'package:samayam/views/user_login_page/signin.dart';
 
 class Settingspage extends StatelessWidget {
   const Settingspage({super.key});
