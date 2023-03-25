@@ -22,7 +22,7 @@ class Productdetailbox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                'Amount',
+                'Subtotal',
                 style: kcartliststyle,
               ),
               Text(
@@ -39,7 +39,7 @@ class Productdetailbox extends StatelessWidget {
                 style: kcartliststyle,
               ),
               Text(
-                '2000',
+                '₹2000',
                 style: kcartliststyle,
               )
             ],
@@ -52,14 +52,14 @@ class Productdetailbox extends StatelessWidget {
                 style: kcartliststyle,
               ),
               Text(
-                '44000',
+                '₹44000',
                 style: kcartliststyle,
               )
             ],
           ),
           ElevatedButton(
               onPressed: () {
-                Get.to(const Paymentscreen(),
+                Get.to(() => Paymentscreen(),
                     transition: Transition.circularReveal,
                     duration: const Duration(seconds: 2));
               },

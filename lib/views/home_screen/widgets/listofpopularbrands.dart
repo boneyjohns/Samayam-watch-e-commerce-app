@@ -13,13 +13,14 @@ class Listofbrandicons extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50,
-      child: Expanded(
-        child: StreamBuilder<QuerySnapshot>(
-            stream:
-                FirebaseFirestore.instance.collection('categories').snapshots(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return ListView.builder(
+      child: StreamBuilder<QuerySnapshot>(
+          stream:
+              FirebaseFirestore.instance.collection('categories').snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Padding(
+                padding: const EdgeInsets.only(right: 10, left: 10),
+                child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     QueryDocumentSnapshot documentSnapshot =
@@ -37,12 +38,15 @@ class Listofbrandicons extends StatelessWidget {
                     );
                   },
                   itemCount: snapshot.data!.docs.length,
-                );
-              } else {
-                return const Text('list is empty');
-              }
-            }),
-      ),
+                  separatorBuilder: (context, index) => Divider(
+                    endIndent: 10,
+                  ),
+                ),
+              );
+            } else {
+              return const Text('list is empty');
+            }
+          }),
     );
   }
 }

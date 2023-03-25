@@ -44,27 +44,35 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   title: Text('Edit Profile '),
                 ),
                 const SizedBox(
-                  height: 100,
+                  height: 60,
                 ),
-                CircleAvatar(
-                  maxRadius: 80,
-                  backgroundImage: NetworkImage(widget.editimag),
-                ),
-                IconButton(
-                    onPressed: () {
-                      setState(() async {
-                        final imageurl = await Images.getimage();
+                Stack(
+                  children: [
+                    CircleAvatar(
+                      maxRadius: 150,
+                      backgroundImage: NetworkImage(widget.editimag),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 135,
+                      child: IconButton(
+                          onPressed: () {
+                            setState(() async {
+                              final imageurl = await Images.getimage();
 
-                        setState(() {});
-                        widget.editimag = imageurl!;
-                        log(imageurl.toString());
-                      });
-                    },
-                    icon: const Icon(
-                      Icons.camera_alt_sharp,
-                      color: kred,
-                      size: 50,
-                    )),
+                              setState(() {});
+                              widget.editimag = imageurl!;
+                              log(imageurl.toString());
+                            });
+                          },
+                          icon: const Icon(
+                            Icons.camera_alt_sharp,
+                            color: kred,
+                            size: 50,
+                          )),
+                    ),
+                  ],
+                ),
                 kheight30,
                 Text('UserName', style: knotificationstyle),
                 kheight10,

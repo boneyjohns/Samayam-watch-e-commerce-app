@@ -9,6 +9,7 @@ signupUser({
   required String useremail,
   required String phone,
   required String image,
+  required String address,
 }) async {
   final User? userid = FirebaseAuth.instance.currentUser;
   try {
@@ -22,7 +23,8 @@ signupUser({
       'phone': phone,
       'email': useremail,
       'userid': userid!.uid,
-      'image': image
+      'image': image,
+      'address': address
     });
   } on FirebaseAuthException catch (e) {
     log('error is $e');

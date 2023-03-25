@@ -12,115 +12,114 @@ import 'package:samayam/views/user_login_page/widgets/loginpageanimation.dart';
 import 'package:samayam/views/user_login_page/widgets/mytext_field.dart';
 
 class Signinpage extends StatelessWidget {
-  Signinpage({
+  const Signinpage({
     super.key,
   });
-
-  Signincontroller signincontroller = Get.put(Signincontroller());
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: signincontroller.loginFormKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      child: Column(
-        children: [
-          kheight20,
-          const Loginpageanimation(),
-          kheight20,
-          Mytextformfield(
-            onSave: (value) {
-              signincontroller.email = value!;
-            },
-            validator: (value) {
-              return signincontroller.validateemail(value!);
-            },
-            hide: false,
-            keyboardtype: TextInputType.emailAddress,
-            text: 'Email',
-            preicon: Icons.mail,
-            mycontroller: signincontroller.emailcontroller,
-          ),
-          kheight20,
-          Mytextformfield(
+      child: GetBuilder<Signincontroller>(builder: (c) {
+        return Column(
+          children: [
+            kheight20,
+            const Loginpageanimation(),
+            kheight20,
+            Mytextformfield(
               onSave: (value) {
-                signincontroller.password = value!;
+                c.email = value!;
               },
               validator: (value) {
-                return signincontroller.validatepassword(value!);
+                return c.validateemail(value!);
               },
-              keyboardtype: TextInputType.visiblePassword,
-              text: 'passsword',
-              preicon: Icons.lock,
-              hide: true,
-              mycontroller: signincontroller.passwordcontroller),
-          kheight20,
-          InputChip(
-              backgroundColor: kblue,
-              onPressed: () async {
-                signincontroller.checkLogin();
-
-                await emaillogin(
-                    useremail: signincontroller.email,
-                    userpassword: signincontroller.password);
-              },
-              label: Text(
-                'Login',
-                style: kcartliststyle,
-              )),
-          kheight10,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InputChip(
-                backgroundColor: kwhite,
-                onPressed: () {
-                  signinwithgoogle();
+              hide: false,
+              keyboardtype: TextInputType.emailAddress,
+              text: 'Email',
+              preicon: Icons.mail,
+              mycontroller: c.emailcontroller,
+            ),
+            kheight20,
+            Mytextformfield(
+                onSave: (value) {
+                  c.password = value!;
                 },
-                label: CircleAvatar(
+                validator: (value) {
+                  return c.validatepassword(value!);
+                },
+                keyboardtype: TextInputType.visiblePassword,
+                text: 'passsword',
+                preicon: Icons.lock,
+                hide: true,
+                mycontroller: c.passwordcontroller),
+            kheight20,
+            InputChip(
+                backgroundColor: kblue,
+                onPressed: () async {
+                  c.checkLogin();
+
+                  await emaillogin(
+                      useremail: c.email, userpassword: c.password);
+                },
+                label: Text(
+                  'Login',
+                  style: kcartliststyle,
+                )),
+            kheight10,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InputChip(
                   backgroundColor: kwhite,
-                  child: Image.network(
-                    google,
+                  onPressed: () {
+                    signinwithgoogle();
+                  },
+                  label: CircleAvatar(
+                    backgroundColor: kwhite,
+                    child: Image.network(
+                      google,
+                    ),
                   ),
+                  pressElevation: 30,
                 ),
-                pressElevation: 30,
+                InputChip(
+                  backgroundColor: kwhite,
+                  pressElevation: 50,
+                  label: const Icon(
+                    Icons.phone,
+                    color: kred,
+                  ),
+                  onPressed: () {},
+                )
+              ],
+            ),
+            GestureDetector(
+              onTap: () {
+                Get.to(() => SignUp(),
+                    transition: Transition.circularReveal,
+                    duration: const Duration(seconds: 2));
+              },
+              child: Card(
+                child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      "Don't have an account signUp",
+                      style: klogintext,
+                    )),
               ),
-              InputChip(
-                backgroundColor: kwhite,
-                pressElevation: 50,
-                label: const Icon(
-                  Icons.phone,
-                  color: kred,
-                ),
-                onPressed: () {},
-              )
-            ],
-          ),
-          GestureDetector(
-            onTap: () {
-              Get.to(() => SignUp(),
-                  transition: Transition.circularReveal,
-                  duration: const Duration(seconds: 2));
-            },
-            child: Card(
+            ),
+            Card(
               child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: Text(
-                    "Don't have an account signUp",
-                    style: klogintext,
+                    "Forgot password",
+                    style: klogintextred,
                   )),
-            ),
-          ),
-          Card(
-            child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Text(
-                  "Forgot password",
-                  style: klogintextred,
-                )),
-          )
-        ],
-      ),
+            )
+          ],
+        );
+      }),
     );
   }
 }

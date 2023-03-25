@@ -25,13 +25,14 @@ void signinwithgoogle() async {
         username: name ?? 'No username',
         userpassword: '',
         useremail: email.toString(),
-        phone: phone ?? 'No phone number');
+        phone: phone ?? 'No phone number',
+        address: 'please add an address');
 
     if (userCredential != null) {
       Get.offAll(() => const Navigationpage(),
           transition: Transition.circularReveal,
           duration: const Duration(seconds: 2));
-    } else {}
+    }
   } on FirebaseAuthException catch (e) {
     log('error $e');
   }

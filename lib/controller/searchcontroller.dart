@@ -29,6 +29,12 @@ class Searchcontroller extends GetxController {
     super.onInit();
   }
 
+  @override
+  void dispose() {
+    textcontroller = TextEditingController();
+    super.dispose();
+  }
+
   search(String value) {
     searchlist.value = productList
         .where((element) =>

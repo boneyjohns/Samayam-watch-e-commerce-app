@@ -59,7 +59,7 @@ class Checkoutbox extends StatelessWidget {
           ),
           ElevatedButton(
               onPressed: () {
-                Get.to(const Paymentscreen(),
+                Get.to(Paymentscreen(),
                     transition: Transition.circularReveal,
                     duration: const Duration(seconds: 2));
               },

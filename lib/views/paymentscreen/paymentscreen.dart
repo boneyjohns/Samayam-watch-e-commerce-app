@@ -1,25 +1,31 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/const.dart';
 import 'package:samayam/const/textstyle.dart';
+import 'package:samayam/functions/editprofile.dart';
+import 'package:samayam/functions/userAddress.dart';
+import 'package:samayam/model/profilemodel.dart';
 
 import 'package:samayam/views/navigation_screen/widget/myappbar.dart';
 import 'package:samayam/views/productdetails/widget/productdetailcheckoutbox.dart';
 import 'package:samayam/views/splash_screen/widget/splash_paint.dart';
 
 class Paymentscreen extends StatelessWidget {
-  const Paymentscreen({super.key});
+  Paymentscreen({super.key});
+
+  final TextEditingController addresscontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60),
+        preferredSize: const Size.fromHeight(60),
         child: Myappbar(
           title: const Text('Payment method'),
-          appbartrailing:
-              IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+          appbartrailing: Addaddress(addresscontroller: addresscontroller),
         ),
       ),
       body: Stack(
@@ -35,17 +41,36 @@ class Paymentscreen extends StatelessWidget {
               kheight20,
               Container(
                 height: 165,
-                width: double.infinity,
+                width: 300,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: kctransperant),
-                child: Text(
-                  '''Boney johns
-                      Brototype
-                      maradu 
-                      pin : 255554''',
-                  style: kcartliststyle,
-                ),
+                child: StreamBuilder<List<ProfileModel>>(
+                    stream: FirebaseFirestore.instance
+                        .collection('users')
+                        .doc(currentemail)
+                        .collection('userdetails')
+                        .snapshots()
+                        .map((event) => event.docs
+                            .map((e) => ProfileModel.fromJson(e.data()))
+                            .toList()),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        List<ProfileModel> profile = snapshot.data!;
+                        return ListView(
+                          children: [
+                            Center(
+                              child: Text(
+                                profile[0].address.toString(),
+                                style: kcartliststyle,
+                              ),
+                            ),
+                          ],
+                        );
+                      } else {
+                        return CircleAvatar();
+                      }
+                    }),
               ),
               kheight30,
               Text(

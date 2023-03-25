@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:samayam/const/colours.dart';
+import 'package:samayam/functions/editprofile.dart';
 import 'package:samayam/functions/wishlist_fun.dart';
 import 'package:samayam/model/product_model.dart';
 
@@ -27,6 +28,8 @@ class Productdetailimg extends StatelessWidget {
             right: 20,
             child: StreamBuilder(
                 stream: FirebaseFirestore.instance
+                    .collection('users')
+                    .doc(currentemail)
                     .collection('wishlist')
                     .snapshots()
                     .map((snapshot) => snapshot.docs

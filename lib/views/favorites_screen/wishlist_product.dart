@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/const.dart';
 import 'package:samayam/const/textstyle.dart';
+import 'package:samayam/functions/editprofile.dart';
 import 'package:samayam/functions/wishlist_fun.dart';
 import 'package:samayam/model/product_model.dart';
 import 'package:samayam/views/productdetails/productdetails.dart';
@@ -19,6 +20,8 @@ class Wishlistproducts extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: StreamBuilder<List<ProductModel>>(
           stream: FirebaseFirestore.instance
+              .collection('users')
+              .doc(currentemail)
               .collection('wishlist')
               .snapshots()
               .map((snapshot) => snapshot.docs

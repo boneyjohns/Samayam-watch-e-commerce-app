@@ -11,7 +11,10 @@ signupfun(
     required String useremail,
     required String phone}) async {
   await FirebaseAuth.instance
-      .createUserWithEmailAndPassword(email: useremail, password: userpassword)
+      .createUserWithEmailAndPassword(
+    email: useremail,
+    password: userpassword,
+  )
       .then((value) async {
     await signupUser(
         username: username,
@@ -19,7 +22,8 @@ signupfun(
         useremail: useremail,
         image:
             'https://thumbs.dreamstime.com/z/businessman-icon-image-male-avatar-profile-vector-glasses-beard-hairstyle-179728610.jpg',
-        phone: phone);
+        phone: phone,
+        address: 'please add an address');
     log('usercreated');
     Get.offAll(() => Signin());
   });

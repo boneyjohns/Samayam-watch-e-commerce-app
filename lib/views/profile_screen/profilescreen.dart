@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:samayam/const/const.dart';
 import 'package:samayam/const/textstyle.dart';
+import 'package:samayam/functions/editprofile.dart';
 import 'package:samayam/model/profilemodel.dart';
 import 'package:samayam/views/navigation_screen/widget/myappbar.dart';
 import 'package:samayam/views/profile_screen/profileeditScreen.dart';
@@ -12,7 +13,7 @@ import 'package:samayam/views/profile_screen/widget/profilefield.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
-  final email = FirebaseAuth.instance.currentUser!.email;
+
   String imageurl =
       'https://imageio.forbes.com/specials-images/imageserve/63974b591dbcd3145c446ad4/Elon-Musk/1960x0.jpg?format=jpg&width=960';
   @override
@@ -20,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
     return StreamBuilder<List<ProfileModel>>(
         stream: FirebaseFirestore.instance
             .collection('users')
-            .doc(email)
+            .doc(currentemail)
             .collection('userdetails')
             .snapshots()
             .map((event) => event.docs
@@ -44,10 +45,10 @@ class ProfileScreen extends StatelessWidget {
                   title: const Text('Profile'),
                 ),
                 const SizedBox(
-                  height: 100,
+                  height: 60,
                 ),
                 CircleAvatar(
-                    radius: 50,
+                    radius: 130,
                     backgroundImage: NetworkImage(profile[0].image.toString())),
                 kheight30,
                 Text(profile[0].username ?? 'nousername',
@@ -69,7 +70,7 @@ class ProfileScreen extends StatelessWidget {
               ],
             );
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         });
   }

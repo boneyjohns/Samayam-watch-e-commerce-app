@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:samayam/functions/editprofile.dart';
 import 'package:samayam/views/settings/settings.dart';
 
 import 'package:flutter/material.dart';
@@ -31,6 +32,8 @@ class CartScreen extends StatelessWidget {
         kheight20,
         StreamBuilder<List<ProductModel>>(
             stream: FirebaseFirestore.instance
+                .collection('users')
+                .doc(currentemail)
                 .collection('cart')
                 .snapshots()
                 .map((snapshot) => snapshot.docs
