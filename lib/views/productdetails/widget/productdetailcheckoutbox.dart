@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/textstyle.dart';
+import 'package:samayam/model/product_model.dart';
 import 'package:samayam/views/paymentscreen/paymentscreen.dart';
 
 class Productdetailbox extends StatelessWidget {
-  const Productdetailbox({
-    Key? key,
-  }) : super(key: key);
-
+  Productdetailbox({Key? key, required this.brand}) : super(key: key);
+  ProductModel brand;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +25,7 @@ class Productdetailbox extends StatelessWidget {
                 style: kcartliststyle,
               ),
               Text(
-                '42000',
+                '₹${brand.price}',
                 style: kcartliststyle,
               )
             ],
@@ -39,7 +38,7 @@ class Productdetailbox extends StatelessWidget {
                 style: kcartliststyle,
               ),
               Text(
-                '₹2000',
+                '₹200',
                 style: kcartliststyle,
               )
             ],
@@ -52,14 +51,14 @@ class Productdetailbox extends StatelessWidget {
                 style: kcartliststyle,
               ),
               Text(
-                '₹44000',
+                '₹${(int.parse(brand.price) + 200)}',
                 style: kcartliststyle,
               )
             ],
           ),
           ElevatedButton(
               onPressed: () {
-                Get.to(() => Paymentscreen(),
+                Get.to(() => Paymentscreen(product: brand),
                     transition: Transition.circularReveal,
                     duration: const Duration(seconds: 2));
               },

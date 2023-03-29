@@ -16,10 +16,6 @@ class SreachScreenProducts extends StatelessWidget {
   Searchcontroller searchcontroller = Get.put(Searchcontroller());
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      // searchcontroller.searchlist.value = searchcontroller.productList;
-      // searchcontroller.getproductlist();
-    });
     return StreamBuilder<List<ProductModel>>(
         stream: FirebaseFirestore.instance.collection('search').snapshots().map(
             (snapshot) => snapshot.docs

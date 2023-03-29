@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/textstyle.dart';
-import 'package:samayam/views/paymentscreen/paymentscreen.dart';
+import 'package:samayam/controller/paymentcontroller.dart';
 
 class Checkoutbox extends StatelessWidget {
-  const Checkoutbox({
+  Checkoutbox({
     Key? key,
   }) : super(key: key);
 
@@ -22,13 +22,17 @@ class Checkoutbox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                'Amount',
+                'Subtotal',
                 style: kcartliststyle,
               ),
-              Text(
-                '42000',
-                style: kcartliststyle,
-              )
+              GetBuilder<Paymentcontroller>(
+                  init: Paymentcontroller(),
+                  builder: (controller) {
+                    return Text(
+                      controller.sum().toString(),
+                      style: kcartliststyle,
+                    );
+                  })
             ],
           ),
           Row(
@@ -39,7 +43,7 @@ class Checkoutbox extends StatelessWidget {
                 style: kcartliststyle,
               ),
               Text(
-                '2000',
+                '200',
                 style: kcartliststyle,
               )
             ],
@@ -51,19 +55,17 @@ class Checkoutbox extends StatelessWidget {
                 'Total Cost',
                 style: kcartliststyle,
               ),
-              Text(
-                '44000',
-                style: kcartliststyle,
-              )
+              GetBuilder<Paymentcontroller>(
+                  init: Paymentcontroller(),
+                  builder: (controller) {
+                    return Text(
+                      '${controller.sum() + 200}',
+                      style: kcartliststyle,
+                    );
+                  })
             ],
           ),
-          ElevatedButton(
-              onPressed: () {
-                Get.to(Paymentscreen(),
-                    transition: Transition.circularReveal,
-                    duration: const Duration(seconds: 2));
-              },
-              child: const Text("Checkout"))
+          ElevatedButton(onPressed: () {}, child: const Text("Checkout"))
         ],
       ),
     );

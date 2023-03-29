@@ -14,7 +14,7 @@ class NotificationScreen extends StatelessWidget {
         Myappbar(
           appbartrailing: IconButton(
               onPressed: () {
-                Get.to(const Settingspage(),
+                Get.to(() => const Settingspage(),
                     transition: Transition.circularReveal,
                     duration: const Duration(seconds: 2));
               },

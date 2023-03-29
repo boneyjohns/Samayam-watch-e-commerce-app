@@ -28,7 +28,8 @@ class Listofbrandicons extends StatelessWidget {
                     return GestureDetector(
                       onTap: () {
                         Get.to(
-                            Insidecategoires(brand: documentSnapshot['name']),
+                            () => Insidecategoires(
+                                brand: documentSnapshot['name']),
                             transition: Transition.circularReveal,
                             duration: const Duration(seconds: 2));
                       },

@@ -78,7 +78,7 @@ class Settingspage extends StatelessWidget {
                 onPressed: () async {
                   await GoogleSignIn().signOut();
                   FirebaseAuth.instance.signOut();
-                  Get.off(Signin(),
+                  Get.off(() => Signin(),
                       transition: Transition.circularReveal,
                       duration: const Duration(seconds: 2));
                 },

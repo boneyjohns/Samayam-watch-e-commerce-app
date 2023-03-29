@@ -1,14 +1,21 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/const.dart';
 import 'package:samayam/const/textstyle.dart';
+import 'package:samayam/controller/paymentcontroller.dart';
 import 'package:samayam/functions/addtocart.dart';
 import 'package:samayam/model/product_model.dart';
 
 class Cartlist extends StatelessWidget {
-  Cartlist({Key? key, required this.product}) : super(key: key);
+  Cartlist({Key? key, required this.product, required this.index})
+      : super(key: key);
 
   ProductModel product;
+  int index;
+  Paymentcontroller paymentcontroller = Get.put(Paymentcontroller());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,6 +55,8 @@ class Cartlist extends StatelessWidget {
           IconButton(
               onPressed: () {
                 removeFromCart(product: product);
+                paymentcontroller.removepoduct(product);
+                log(paymentcontroller.paymentlist.length.toString());
               },
               icon: const Icon(
                 Icons.delete,

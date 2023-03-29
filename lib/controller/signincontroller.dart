@@ -27,6 +27,11 @@ class Signincontroller extends GetxController {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   void onReady() {
     super.onReady();
   }

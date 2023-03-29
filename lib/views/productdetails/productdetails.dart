@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:samayam/const/const.dart';
 import 'package:samayam/const/textstyle.dart';
+import 'package:samayam/controller/paymentcontroller.dart';
 import 'package:samayam/functions/addtocart.dart';
 import 'package:samayam/model/product_model.dart';
 import 'package:samayam/views/navigation_screen/widget/myappbar.dart';
@@ -11,11 +14,11 @@ import 'package:samayam/views/settings/settings.dart';
 import 'package:samayam/views/splash_screen/widget/splash_paint.dart';
 
 class Productdeatils extends StatelessWidget {
-  const Productdeatils({
+  Productdeatils({
     super.key,
     required this.product,
   });
-
+  Paymentcontroller paymentcontroller = Get.put(Paymentcontroller());
   final ProductModel product;
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ class Productdeatils extends StatelessWidget {
             appbartrailing: IconButton(
               icon: const Icon(Icons.settings),
               onPressed: () {
-                Get.to(const Settingspage(),
+                Get.to(() => const Settingspage(),
                     transition: Transition.circularReveal,
                     duration: const Duration(seconds: 2));
               },
@@ -61,6 +64,9 @@ class Productdeatils extends StatelessWidget {
                             icon: IconButton(
                                 onPressed: () {
                                   addToCart(product: product);
+                                  paymentcontroller.addpaymentproduct(product);
+                                  log(paymentcontroller.paymentlist.length
+                                      .toString());
                                 },
                                 icon: const Icon(
                                   Icons.shopping_cart,
@@ -84,7 +90,9 @@ class Productdeatils extends StatelessWidget {
                     kheight10,
                     Text('Dualtime   ${product.dualtime}'),
                     kheight30,
-                    const Productdetailbox()
+                    Productdetailbox(
+                      brand: product,
+                    )
                   ]),
                 ),
               )

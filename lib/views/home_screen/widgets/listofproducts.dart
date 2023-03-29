@@ -42,7 +42,8 @@ class Listofproducts extends StatelessWidget {
 
                     return InkWell(
                       onTap: () => Get.to(
-                          Productdeatils(product: documentSnapshot[index]),
+                          () =>
+                              Productdeatils(product: documentSnapshot[index]),
                           transition: Transition.circularReveal,
                           duration: const Duration(seconds: 2)),
                       child: Container(
