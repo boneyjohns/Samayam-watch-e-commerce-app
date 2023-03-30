@@ -26,27 +26,40 @@ class Settingspage extends StatelessWidget {
           const Mysplashpaint(),
           Column(
             children: [
-              const Settinglisttile(
-                  icon: Icon(
-                    Icons.info,
-                    color: kblack,
-                  ),
-                  title: 'Notification'),
+              GestureDetector(
+                onTap: () {
+                  Get.defaultDialog(
+                      title: 'SAMAYAM',
+                      middleText:
+                          ' This app is developed and designed by BONEY JOHNS',
+                      confirm: TextButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          child: const Text('Ok')));
+                },
+                child: const Settinglisttile(
+                    icon: Icon(
+                      Icons.info,
+                      color: kblack,
+                    ),
+                    title: 'Info'),
+              ),
               const Settinglisttile(
                   icon: Icon(
                     Icons.lock,
                     color: kblack,
                   ),
-                  title: 'privacy Policy'),
+                  title: 'Privacy Policy'),
               const Settinglisttile(
                   icon: Icon(Icons.notifications, color: kblack),
                   title: 'Invite Friends'),
               const Settinglisttile(
                   icon: Icon(
-                    Icons.groups_rounded,
+                    Icons.balance_rounded,
                     color: kblack,
                   ),
-                  title: 'Chat Support'),
+                  title: 'Terms & Conditions'),
               kheight30,
               GestureDetector(
                   onTap: () {

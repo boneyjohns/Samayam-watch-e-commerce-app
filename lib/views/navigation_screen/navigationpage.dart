@@ -6,7 +6,7 @@ import 'package:samayam/controller/bottomnavcontroller.dart';
 import 'package:samayam/views/cart_screen/cartscreen.dart';
 import 'package:samayam/views/favorites_screen/favoritescreen.dart';
 import 'package:samayam/views/home_screen/home_screen.dart';
-import 'package:samayam/views/notification_screen/notification_screen.dart';
+import 'package:samayam/views/notification_screen/orderscreen.dart';
 import 'package:samayam/views/profile_screen/profilescreen.dart';
 import 'package:samayam/views/splash_screen/widget/splash_paint.dart';
 

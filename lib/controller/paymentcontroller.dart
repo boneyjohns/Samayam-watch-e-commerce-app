@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:samayam/model/product_model.dart';
 
@@ -10,7 +12,9 @@ class Paymentcontroller extends GetxController {
   }
 
   removepoduct(ProductModel product) {
-    paymentlist.remove(product);
+    paymentlist
+        .removeWhere((element) => element.modelname == product.modelname);
+    log(paymentlist.toString() + "gggggggggg");
     update();
   }
 
@@ -24,7 +28,7 @@ class Paymentcontroller extends GetxController {
       for (var product in paymentlist) {
         newprice += int.parse(product.price);
       }
-      update();
+
       return newprice;
     }
   }
