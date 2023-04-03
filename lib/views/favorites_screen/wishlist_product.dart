@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/const.dart';
 import 'package:samayam/const/textstyle.dart';
-import 'package:samayam/functions/editprofile.dart';
+import 'package:samayam/functions/edit_profile.dart';
 import 'package:samayam/functions/wishlist_fun.dart';
 import 'package:samayam/model/product_model.dart';
-import 'package:samayam/views/productdetails/productdetails.dart';
+import 'package:samayam/views/productdetails/product_details.dart';
 
 class Wishlistproducts extends StatelessWidget {
   const Wishlistproducts({
@@ -44,7 +44,7 @@ class Wishlistproducts extends StatelessWidget {
                           () =>
                               Productdeatils(product: documentSnapshot[index]),
                           transition: Transition.circularReveal,
-                          duration: const Duration(seconds: 2)),
+                          duration: const Duration(seconds: 1)),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
@@ -92,7 +92,7 @@ class Wishlistproducts extends StatelessWidget {
                                   'Price',
                                   style: TextStyle(fontSize: 18),
                                 ),
-                                Text(documentSnapshot[index].price),
+                                Text('₹${documentSnapshot[index].price}'),
                                 kwidth20,
                               ],
                             )

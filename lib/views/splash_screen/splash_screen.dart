@@ -13,9 +13,9 @@ class SplashScreen extends StatelessWidget {
   Future gotohome() async {
     await Future.delayed(const Duration(seconds: 2));
 
-    Get.offAll(() => Signin(),
+    Get.offAll(() => const Signin(),
         transition: Transition.circularReveal,
-        duration: const Duration(seconds: 2));
+        duration: const Duration(seconds: 1));
   }
 
   @override
@@ -39,7 +39,7 @@ class SplashScreen extends StatelessWidget {
               kheight30,
               Text(
                 appname,
-                style: kmaintitle,
+                style: kapplogo,
               ),
             ],
           )

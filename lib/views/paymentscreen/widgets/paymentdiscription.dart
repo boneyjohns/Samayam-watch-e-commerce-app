@@ -22,11 +22,11 @@ class Paymentdiscription extends StatelessWidget {
               children: [
                 Text(
                   'Subtotal',
-                  style: kcartliststyle,
+                  style: kpaymentstyle,
                 ),
                 Text(
-                  price,
-                  style: kcartliststyle,
+                  '₹$price',
+                  style: kpaymentstyle,
                 )
               ],
             ),
@@ -35,11 +35,11 @@ class Paymentdiscription extends StatelessWidget {
               children: [
                 Text(
                   'Shiping',
-                  style: kcartliststyle,
+                  style: kpaymentstyle,
                 ),
                 Text(
                   '₹200',
-                  style: kcartliststyle,
+                  style: kpaymentstyle,
                 )
               ],
             ),
@@ -48,11 +48,11 @@ class Paymentdiscription extends StatelessWidget {
               children: [
                 Text(
                   'Total Cost',
-                  style: kcartliststyle,
+                  style: kpaymentstyle,
                 ),
                 Text(
-                  '${double.parse(price) + 200}',
-                  style: kcartliststyle,
+                  '₹${int.parse(price) + 200}',
+                  style: kpaymentstyle,
                 )
               ],
             ),

@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:samayam/const/colours.dart';
-import 'package:samayam/functions/editprofile.dart';
+import 'package:samayam/functions/edit_profile.dart';
 import 'package:samayam/model/product_model.dart';
 
 Future addtowhishlist({required ProductModel product}) async {

@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/const.dart';
-import 'package:samayam/views/settings/widget/settinglisttile.dart';
+import 'package:samayam/const/textstyle.dart';
+import 'package:samayam/views/settings/widget/settings_listtile.dart';
 import 'package:samayam/views/splash_screen/widget/splash_paint.dart';
 import 'package:samayam/views/user_login_page/signin.dart';
 
@@ -16,7 +17,10 @@ class Settingspage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Settings"),
+        title: Text(
+          "Settings",
+          style: kappbartext,
+        ),
         backgroundColor: kappbarcolor,
         centerTitle: true,
         toolbarHeight: 60,
@@ -30,8 +34,9 @@ class Settingspage extends StatelessWidget {
                 onTap: () {
                   Get.defaultDialog(
                       title: 'SAMAYAM',
+                      titleStyle: kmainheading,
                       middleText:
-                          ' This app is developed and designed by BONEY JOHNS',
+                          ' This app is a demo e-commerce app  developed and designed for study purpose by  BONEY JOHNS',
                       confirm: TextButton(
                           onPressed: () {
                             Get.back();
@@ -52,7 +57,7 @@ class Settingspage extends StatelessWidget {
                   ),
                   title: 'Privacy Policy'),
               const Settinglisttile(
-                  icon: Icon(Icons.notifications, color: kblack),
+                  icon: Icon(Icons.share, color: kblack),
                   title: 'Invite Friends'),
               const Settinglisttile(
                   icon: Icon(
@@ -60,7 +65,7 @@ class Settingspage extends StatelessWidget {
                     color: kblack,
                   ),
                   title: 'Terms & Conditions'),
-              kheight30,
+              kheight10,
               GestureDetector(
                   onTap: () {
                     _dialogBuilder(context);
@@ -91,9 +96,9 @@ class Settingspage extends StatelessWidget {
                 onPressed: () async {
                   await GoogleSignIn().signOut();
                   FirebaseAuth.instance.signOut();
-                  Get.off(() => Signin(),
+                  Get.off(() => const Signin(),
                       transition: Transition.circularReveal,
-                      duration: const Duration(seconds: 2));
+                      duration: const Duration(seconds: 1));
                 },
                 child: const Text('Yes')),
           ],

@@ -1,34 +1,37 @@
 // ignore_for_file: file_names
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/const.dart';
 import 'package:samayam/const/textstyle.dart';
-import 'package:samayam/controller/signincontroller.dart';
-import 'package:samayam/functions/signup_funstion.dart';
-import 'package:samayam/views/user_login_page/widgets/loginpageanimation.dart';
-import 'package:samayam/views/user_login_page/widgets/mytext_field.dart';
+import 'package:samayam/controller/signin_controller.dart';
+import 'package:samayam/functions/signup_function.dart';
+import 'package:samayam/views/user_login_page/widgets/login_page_animation.dart';
+import 'package:samayam/views/user_login_page/widgets/my_text_field.dart';
+
+final TextEditingController usernamecontroller = TextEditingController();
+final TextEditingController emailcontroller = TextEditingController();
+final TextEditingController passwordcontroller = TextEditingController();
+final TextEditingController phonecontroller = TextEditingController();
 
 class SignUp extends StatelessWidget {
   SignUp({
     super.key,
   });
   final User? currentuser = FirebaseAuth.instance.currentUser;
-
+  final signincontroller = Get.put(Signincontroller());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: SizedBox(
-            height: 80,
-            child: Image.asset('lib/asset/LOGO.png', fit: BoxFit.cover)),
-        centerTitle: true,
-        backgroundColor: kappbarcolor,
-      ),
-      body: GetBuilder<Signincontroller>(builder: (c) {
-        return SingleChildScrollView(
+        appBar: AppBar(
+          title: SizedBox(
+              height: 80,
+              child: Image.asset('lib/asset/LOGO.png', fit: BoxFit.cover)),
+          centerTitle: true,
+          backgroundColor: kappbarcolor,
+        ),
+        body: SingleChildScrollView(
           child: Form(
             key: signincontroller.signupformkey,
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -38,70 +41,58 @@ class SignUp extends StatelessWidget {
                 const Loginpageanimation(),
                 kheight20,
                 Mytextformfield(
-                  onSave: (value) {
-                    signincontroller.name = value!;
-                  },
                   validator: (value) {
-                    return signincontroller.validateusername(value!);
+                    return signincontroller.validateusername(value ?? '');
                   },
                   hide: false,
                   keyboardtype: TextInputType.name,
                   text: 'Username',
                   preicon: Icons.person,
-                  mycontroller: c.namecontroller,
+                  mycontroller: usernamecontroller,
                 ),
                 kheight20,
                 Mytextformfield(
-                    onSave: (value) {
-                      signincontroller.phone = value!;
-                    },
                     validator: (value) {
-                      return signincontroller.validatephone(value!);
+                      return signincontroller.validatephone(value ?? '');
                     },
                     hide: false,
                     keyboardtype: TextInputType.phone,
                     text: 'Phone',
                     preicon: Icons.phone,
-                    mycontroller: c.phonecontroller),
+                    mycontroller: phonecontroller),
                 kheight20,
                 Mytextformfield(
-                    onSave: (value) {
-                      signincontroller.email = value!;
-                    },
                     validator: (value) {
-                      return signincontroller.validateemail(value!);
+                      return signincontroller.validateemail(value ?? '');
                     },
                     hide: false,
                     keyboardtype: TextInputType.emailAddress,
                     text: 'Email',
                     preicon: Icons.mail,
-                    mycontroller: c.emailcontroller),
+                    mycontroller: emailcontroller),
                 kheight20,
                 Mytextformfield(
-                    onSave: (value) {
-                      signincontroller.password = value!;
-                    },
                     validator: (value) {
-                      return signincontroller.validatepassword(value!);
+                      return signincontroller.validatepassword(value ?? '');
                     },
                     hide: true,
                     keyboardtype: TextInputType.visiblePassword,
                     text: 'Password',
                     preicon: Icons.lock,
-                    mycontroller: c.passwordcontroller),
+                    mycontroller: passwordcontroller),
                 kheight20,
                 ElevatedButton(
                     onPressed: () async {
                       signincontroller.checkSignup();
                       await signupfun(
-                          phone: c.phonecontroller.text.trim(),
-                          useremail: c.emailcontroller.text,
-                          username: c.namecontroller.text,
-                          userpassword: c.passwordcontroller.text);
+                          phone: phonecontroller.text.trim(),
+                          useremail: emailcontroller.text,
+                          username: usernamecontroller.text,
+                          userpassword: passwordcontroller.text);
                     },
                     child: Text(
                       'Sign Up',
-                      style: kcartliststyle,
+                      style: kbuttonstyle,
                     )),
                 GestureDetector(
                   onTap: Get.back,
@@ -117,8 +108,6 @@ class SignUp extends StatelessWidget {
               ],
             ),
           ),
-        );
-      }),
-    );
+        ));
   }
 }
