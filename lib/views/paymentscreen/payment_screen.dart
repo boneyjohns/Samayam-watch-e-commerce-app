@@ -7,7 +7,7 @@ import 'package:samayam/const/textstyle.dart';
 import 'package:samayam/functions/add_order.dart';
 import 'package:samayam/functions/edit_profile.dart';
 import 'package:samayam/functions/pay.dart';
-import 'package:samayam/functions/userAddress.dart';
+import 'package:samayam/functions/user_address.dart';
 import 'package:samayam/model/order_model.dart';
 import 'package:samayam/model/product_model.dart';
 import 'package:samayam/model/profile_model.dart';
