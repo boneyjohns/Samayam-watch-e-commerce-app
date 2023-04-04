@@ -7,6 +7,7 @@ import 'package:samayam/const/textstyle.dart';
 import 'package:samayam/controller/signin_controller.dart';
 import 'package:samayam/functions/email_login.dart';
 import 'package:samayam/functions/google_signin.dart';
+import 'package:samayam/views/user_login_page/forgetpassword.dart';
 import 'package:samayam/views/user_login_page/signup_Page.dart';
 import 'package:samayam/views/user_login_page/widgets/login_page_animation.dart';
 import 'package:samayam/views/user_login_page/widgets/my_text_field.dart';
@@ -50,7 +51,7 @@ class Signinpage extends StatelessWidget {
                 mycontroller: passwordcontroller),
             kheight20,
             InputChip(
-                backgroundColor: kblue,
+                backgroundColor: kappbarcolor,
                 onPressed: () async {
                   signincontroller.checkLogin();
 
@@ -58,9 +59,14 @@ class Signinpage extends StatelessWidget {
                       useremail: emailcontroller.text.trim(),
                       userpassword: passwordcontroller.text.trim());
                 },
-                label: Text(
-                  'Login',
-                  style: kbuttonstyle,
+                label: Container(
+                  width: 200,
+                  child: Center(
+                    child: Text(
+                      'Login',
+                      style: kpaymentstyle,
+                    ),
+                  ),
                 )),
             kheight10,
             Row(
@@ -96,13 +102,16 @@ class Signinpage extends StatelessWidget {
                     )),
               ),
             ),
-            Card(
-              child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text(
-                    "Forgot password",
-                    style: klogintextred,
-                  )),
+            GestureDetector(
+              onTap: () => Get.to(ForgotPassword()),
+              child: Card(
+                child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      "Forgot password",
+                      style: klogintextred,
+                    )),
+              ),
             )
           ],
         ));

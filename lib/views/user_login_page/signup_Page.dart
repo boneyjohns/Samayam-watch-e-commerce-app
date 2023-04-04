@@ -25,9 +25,10 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: SizedBox(
-              height: 80,
-              child: Image.asset('lib/asset/LOGO.png', fit: BoxFit.cover)),
+          title: Text(
+            'Signup',
+            style: kappbartext,
+          ),
           centerTitle: true,
           backgroundColor: kappbarcolor,
         ),
@@ -92,7 +93,7 @@ class SignUp extends StatelessWidget {
                     },
                     child: Text(
                       'Sign Up',
-                      style: kbuttonstyle,
+                      style: kpaymentstyle,
                     )),
                 GestureDetector(
                   onTap: Get.back,
