@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/const.dart';
 import 'package:samayam/const/textstyle.dart';
+import 'package:samayam/views/settings/widget/policy_dialog.dart';
 import 'package:samayam/views/settings/widget/settings_listtile.dart';
 import 'package:samayam/views/splash_screen/widget/splash_paint.dart';
 import 'package:samayam/views/user_login_page/signin.dart';
@@ -50,21 +51,37 @@ class Settingspage extends StatelessWidget {
                     ),
                     title: 'Info'),
               ),
-              const Settinglisttile(
-                  icon: Icon(
-                    Icons.lock,
-                    color: kblack,
-                  ),
-                  title: 'Privacy Policy'),
+              GestureDetector(
+                onTap: () {
+                  Get.dialog(Policydialog(
+                    radius: 5,
+                    mdFilename: 'privacy_policy.md',
+                  ));
+                },
+                child: const Settinglisttile(
+                    icon: Icon(
+                      Icons.lock,
+                      color: kblack,
+                    ),
+                    title: 'Privacy Policy'),
+              ),
               const Settinglisttile(
                   icon: Icon(Icons.share, color: kblack),
                   title: 'Invite Friends'),
-              const Settinglisttile(
-                  icon: Icon(
-                    Icons.balance_rounded,
-                    color: kblack,
-                  ),
-                  title: 'Terms & Conditions'),
+              GestureDetector(
+                onTap: () {
+                  Get.dialog(Policydialog(
+                    radius: 5,
+                    mdFilename: 'terms_and_conditions.md',
+                  ));
+                },
+                child: const Settinglisttile(
+                    icon: Icon(
+                      Icons.balance_rounded,
+                      color: kblack,
+                    ),
+                    title: 'Terms & Conditions'),
+              ),
               kheight10,
               GestureDetector(
                   onTap: () {
