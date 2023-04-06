@@ -1,4 +1,4 @@
-package com.example.samayam
+package com.firebase.Samayam
 
 import io.flutter.embedding.android.FlutterActivity
 

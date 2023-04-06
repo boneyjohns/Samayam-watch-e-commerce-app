@@ -7,14 +7,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:114500361085:android:3ac49797ec4342e1950a14",
+        "mobilesdk_app_id": "1:114500361085:android:146c1c5abd500ec9950a14",
         "android_client_info": {
-          "package_name": "com.example.samayam"
+          "package_name": "com.edens.Samayam"
         }
       },
       "oauth_client": [
         {
-          "client_id": "114500361085-nfvh1gob25pm4cgf4lpdgmhu017cb1t5.apps.googleusercontent.com",
+          "client_id": "114500361085-4dgdrfbc2dtc2b7s6dl2t5bm85oogd2r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +27,81 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "114500361085-nfvh1gob25pm4cgf4lpdgmhu017cb1t5.apps.googleusercontent.com",
+              "client_id": "114500361085-4dgdrfbc2dtc2b7s6dl2t5bm85oogd2r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:114500361085:android:c09b75fad2b1164a950a14",
+        "android_client_info": {
+          "package_name": "com.example.adminapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "114500361085-jm99kd5eek0pe88nijj5osgl5jpibj9u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.adminapp",
+            "certificate_hash": "5fb96d72bd5ea10ea7b520d549747d8c7aa5ce1a"
+          }
+        },
+        {
+          "client_id": "114500361085-4dgdrfbc2dtc2b7s6dl2t5bm85oogd2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRyslrtG9Bf7ItBKLSIcRNJqs7jwqbxWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "114500361085-4dgdrfbc2dtc2b7s6dl2t5bm85oogd2r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:114500361085:android:779f596616b11fd7950a14",
+        "android_client_info": {
+          "package_name": "com.firebase.Samayam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "114500361085-chks0pel43h57vjl359gejk9o6pselrn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.firebase.Samayam",
+            "certificate_hash": "5fb96d72bd5ea10ea7b520d549747d8c7aa5ce1a"
+          }
+        },
+        {
+          "client_id": "114500361085-4dgdrfbc2dtc2b7s6dl2t5bm85oogd2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRyslrtG9Bf7ItBKLSIcRNJqs7jwqbxWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "114500361085-4dgdrfbc2dtc2b7s6dl2t5bm85oogd2r.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
