@@ -1,12 +1,11 @@
+import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:samayam/const/colours.dart';
 import 'package:samayam/const/const.dart';
 import 'package:samayam/const/textstyle.dart';
-import 'package:samayam/views/splash_screen/widget/splash_paint.dart';
 import 'package:samayam/views/user_login_page/signin.dart';
-import 'package:samayam/views/user_login_page/signin_page.dart';
 import 'package:samayam/views/user_login_page/widgets/my_text_field.dart';
 
 class ForgotPassword extends StatelessWidget {
@@ -58,11 +57,11 @@ class ForgotPassword extends StatelessWidget {
                           await FirebaseAuth.instance
                               .sendPasswordResetEmail(email: forgotEmail)
                               .then((value) {
-                            print('Email send');
-                            Get.off(() => Signin());
+                            log('Email send');
+                            Get.off(() => const Signin());
                           });
                         } on FirebaseAuthException catch (e) {
-                          print('Error $e');
+                          log('Error $e');
                         }
                       },
                       child: Container(
